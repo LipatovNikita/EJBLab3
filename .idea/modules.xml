@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EJBLab3.5.iml" filepath="$PROJECT_DIR$/EJBLab3.5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ear/ear.iml" filepath="$PROJECT_DIR$/ear/ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ejb1/ejb1.iml" filepath="$PROJECT_DIR$/ejb1/ejb1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ejb2/ejb2.iml" filepath="$PROJECT_DIR$/ejb2/ejb2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/war/war.iml" filepath="$PROJECT_DIR$/war/war.iml" />
+    </modules>
+  </component>
+</project>
