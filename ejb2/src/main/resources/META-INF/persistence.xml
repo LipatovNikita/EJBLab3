@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
-
+    <persistence-unit name="auction" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>jdbc/auctiondb</jta-data-source>
+        <class>auction.entity.Item</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+            <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/auctiondb"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
 </persistence>
