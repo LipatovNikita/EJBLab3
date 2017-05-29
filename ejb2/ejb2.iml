@@ -57,5 +57,6 @@
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.2.14" level="project" />
     <orderEntry type="module" module-name="ejb1" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:4.0.0-b06" level="project" />
   </component>
 </module>

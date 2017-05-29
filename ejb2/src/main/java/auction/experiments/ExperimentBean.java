@@ -7,6 +7,7 @@ import bankaccount.facade.AccountFacade;
 
 import javax.annotation.Resource;
 import javax.ejb.*;
+import javax.servlet.ServletException;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -83,12 +84,52 @@ public class ExperimentBean {
         return "EJBException не выкинут, почему-то";
     }
 
-
-    public void fourthExperiment() {
-
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public String fourthExperiment() {
+        Item item = itemOperation.findById(4);
+        item.setClosed(true);
+        itemOperation.edit(item);
+        blockAccountNewTransaction(item.getPrice());
+        itemOperation.delete(item);
+        if (context.getRollbackOnly()) {
+            return "Rollback состоялся";
+        }
+        else {
+            return "Rollback не было";
+        }
     }
 
-    public void fifthExperiment() {
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void blockAccountNewTransaction(int cash) {
+        Account account = accountOperation.findById(1);
+        account.setCashAccount(account.getCashAccount() - cash);
+        if (account.getCashAccount() > 0) {
+            accountOperation.deleteWithRollback(account);
+        }
+        else {
+            accountOperation.delete(account);
+        }
+    }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public String fifthExperiment() {
+        try {
+            newTransact();
+        }
+        catch (EJBException exception) {
+            return "Транзакция закончена откатом";
+        }
+        return "EJBException не выкинут, почему-то";
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void newTransact() {
+        Item item = itemOperation.findById(3);
+        int count = item.getCount();
+        for (int i = 0; i < count; i++) {
+            debit(item.getPrice());
+            item.setCount(item.getCount() - 1);
+        }
+        itemOperation.deleteWithException(item);
     }
 }

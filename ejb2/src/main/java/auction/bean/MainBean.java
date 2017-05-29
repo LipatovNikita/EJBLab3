@@ -24,4 +24,12 @@ public class MainBean {
     public String getThirdExperiment() {
         return experimentBean.thirdExperiment();
     }
+
+    public String getFourthExperiment() {
+        return experimentBean.fourthExperiment();
+    }
+
+    public String getFifthExperiment() {
+        return experimentBean.fifthExperiment();
+    }
 }
